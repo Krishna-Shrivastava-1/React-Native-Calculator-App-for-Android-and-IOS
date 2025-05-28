@@ -130,15 +130,15 @@ export default function App() {
   return (
     <SafeAreaView style={{ width: '100%', height: '100%', backgroundColor: '#111212', }}>
       <Navbar />
-      <View style={{ justifyContent: 'center', width: '100%', height: '100%', marginBottom: 20 }}>
+      <View style={{ justifyContent: 'flex-start', width: '100%', height: '100%', marginBottom: 20 }}>
         {
           history &&
-          <View style={{ margin: 20, maxHeight: screenHeight * 0.1 }}>
+          <View style={{ margin: 20, maxHeight: screenHeight * 0.2 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', width: '100%' }}>
-              {history.length > 0 && <Text style={{ color: 'white', fontSize: 18, marginBottom: 10, fontWeight: 700 }}>History</Text>}
+             { history.length > 0 && <Text style={{ color: 'white', fontSize: 20, marginBottom: 10, fontWeight: 700 }}>History</Text>}
               {history.length > 0 && (
                 <TouchableOpacity onPress={clearHistory} style={styles.clearHistoryButton}>
-                  <Text style={{ color: 'white', fontSize: 18, marginBottom: 10, backgroundColor: '#8a4301', fontWeight: 700, padding: 3, borderRadius: 10 }}>Clear History</Text>
+                  <Text style={{ color: 'white', fontSize: 20, marginBottom: 10, backgroundColor: '#8a4301', fontWeight: 700, padding: 3, borderRadius: 10 }}>Clear History</Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -147,7 +147,7 @@ export default function App() {
               {history.map((entry, index) => (
                 <Pressable key={index}>
                   <Text onPress={() => setinput(entry.split('=')[0])} style={{ color: '#ccc', fontSize: 18, margin: 10 }}>
-                    {entry.replaceAll('*', 'x').replaceAll('xx', '^')}
+                    {entry.replaceAll('*','x').replaceAll('xx','^')}
                   </Text>
                 </Pressable>
               ))}
@@ -156,14 +156,14 @@ export default function App() {
         }
 
 
-        <View style={{ alignItems: 'flex-end', padding: 12, marginTop: 10, maxHeight: screenHeight * 0.1 }}>
+        <View style={{ alignItems: 'flex-end', padding: 12, marginTop: 10, maxHeight: screenHeight * 0.15 }}>
           <ScrollView>
             <Text style={{ color: 'white', fontSize: 28, fontWeight: '700' }}>
               {input === '' ? '0' : input.replaceAll('**', '^').replaceAll('*', ' x ')}
             </Text>
 
             {input !== '' && (
-              <Text onPress={() => setinput(result)} style={{ color: 'white', fontSize: 28, fontWeight: '700' }}>
+              <Text onPress={()=>setinput(result)} style={{ color: 'white', fontSize: 28, fontWeight: '700' }}>
                 = {String(Number(result).toLocaleString())}
               </Text>
             )}
