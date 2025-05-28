@@ -133,12 +133,12 @@ export default function App() {
       <View style={{ justifyContent: 'center', width: '100%', height: '100%', marginBottom: 20 }}>
         {
           history &&
-          <View style={{ margin: 20, maxHeight: screenHeight * 0.2 }}>
+          <View style={{ margin: 20, maxHeight: screenHeight * 0.1 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', width: '100%' }}>
-             { history.length > 0 && <Text style={{ color: 'white', fontSize: 20, marginBottom: 10, fontWeight: 700 }}>History</Text>}
+              {history.length > 0 && <Text style={{ color: 'white', fontSize: 18, marginBottom: 10, fontWeight: 700 }}>History</Text>}
               {history.length > 0 && (
                 <TouchableOpacity onPress={clearHistory} style={styles.clearHistoryButton}>
-                  <Text style={{ color: 'white', fontSize: 20, marginBottom: 10, backgroundColor: '#8a4301', fontWeight: 700, padding: 3, borderRadius: 10 }}>Clear History</Text>
+                  <Text style={{ color: 'white', fontSize: 18, marginBottom: 10, backgroundColor: '#8a4301', fontWeight: 700, padding: 3, borderRadius: 10 }}>Clear History</Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -147,7 +147,7 @@ export default function App() {
               {history.map((entry, index) => (
                 <Pressable key={index}>
                   <Text onPress={() => setinput(entry.split('=')[0])} style={{ color: '#ccc', fontSize: 18, margin: 10 }}>
-                    {entry.replaceAll('*','x').replaceAll('xx','^')}
+                    {entry.replaceAll('*', 'x').replaceAll('xx', '^')}
                   </Text>
                 </Pressable>
               ))}
@@ -156,14 +156,14 @@ export default function App() {
         }
 
 
-        <View style={{ alignItems: 'flex-end', padding: 12, marginTop: 10, maxHeight: screenHeight * 0.17 }}>
+        <View style={{ alignItems: 'flex-end', padding: 12, marginTop: 10, maxHeight: screenHeight * 0.1 }}>
           <ScrollView>
             <Text style={{ color: 'white', fontSize: 28, fontWeight: '700' }}>
               {input === '' ? '0' : input.replaceAll('**', '^').replaceAll('*', ' x ')}
             </Text>
 
             {input !== '' && (
-              <Text onPress={()=>setinput(result)} style={{ color: 'white', fontSize: 28, fontWeight: '700' }}>
+              <Text onPress={() => setinput(result)} style={{ color: 'white', fontSize: 28, fontWeight: '700' }}>
                 = {String(Number(result).toLocaleString())}
               </Text>
             )}
@@ -226,13 +226,13 @@ const styles = StyleSheet.create({
 
   },
   button: {
-    width: 70, // <-- Set a fixed width for each button
-    height: 70, // <-- Set a fixed height for each button
-    borderRadius: 35, // Makes it circular
+    width: 50, // <-- Set a fixed width for each button
+    height: 50, // <-- Set a fixed height for each button
+    borderRadius: 25, // Makes it circular
     backgroundColor: '#242423', // Example button background
     justifyContent: 'center', // Center text horizontally within the button
     alignItems: 'center', // Center text vertically within the button
-    margin: 5, // Small margin around each button for spacing
+    margin: 3, // Small margin around each button for spacing
     elevation: 3, // Android shadow
     shadowColor: '#000', // iOS shadow
     shadowOffset: { width: 0, height: 2 },
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
     fontWeight: '700', // Use string for fontWeight
   },
   equalsButton: {
-    backgroundColor: 'green', // Green background for the equals button
+    backgroundColor: '#07e30e', // Green background for the equals button
   },
   operatorButton: {
     backgroundColor: '#2e1a0b', // Orange background for operators (/, *, -, +)
